@@ -74,21 +74,20 @@ public class ProductDAO implements IProductDAO {
                 "INNER JOIN category c ON p.CategoryID = c.CategoryID " +
                 "WHERE c.CategoryName = ?";
 
-        System.out.println("----------------------------------------");
-        System.out.println("                 Products             ");
-        System.out.println("----------------------------------------");
         System.out.format("%-10s | %-20s | %-10s | %-15s | %-10s%n", "ProductCode", "Description", "UnitPrice",
                 "OnHandQuantity", "CategoryID");
-        System.out.println("----------------------------------------");
 
         try (Connection conn = DatabaseConnection.connection();
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery)) {
             pstmt.setString(1, categoryName);
             ResultSet result = pstmt.executeQuery();
             while (result.next()) {
-                System.out.format("%-10s | %-20s | %-10.2f | %-15d | %-10d%n", result.getString(1), result.getString(2),
+                System.out.format("%-10s | %-20s | %-10.2f | %-10d | %-10d%n", result.getString(1), result.getString(2),
                         result.getDouble(3), result.getInt(4), result.getInt(5));
             }
+
+            System.out.println("--------------------------------------------------");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -99,18 +98,15 @@ public class ProductDAO implements IProductDAO {
         // TODO Auto-generated method stub
         String sqlQuery = "SELECT * FROM products WHERE ProductCode = ?";
 
-        System.out.println("----------------------------------------");
-        System.out.println("                 Products             ");
-        System.out.println("----------------------------------------");
         System.out.format("%-10s | %-20s | %-10s | %-15s | %-10s%n", "ProductCode", "Description", "UnitPrice",
                 "OnHandQuantity", "CategoryID");
-        System.out.println("----------------------------------------");
 
         try (Connection conn = DatabaseConnection.connection();
-                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
-                ResultSet result = pstmt.executeQuery()) {
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery)) {
+            pstmt.setString(1, productCode);
+            ResultSet result = pstmt.executeQuery();
             while (result.next()) {
-                System.out.format("%-10s | %-20s | %-10.2f | %-15d | %-10d%n", result.getString(1), result.getString(2),
+                System.out.format("%-10s | %-20s | %-10.2f | %-10d | %-10d%n", result.getString(1), result.getString(2),
                         result.getDouble(3), result.getInt(4), result.getInt(5));
             }
 
@@ -126,22 +122,17 @@ public class ProductDAO implements IProductDAO {
         // TODO Auto-generated method stub
         String sqlQuery = "SELECT * FROM products";
 
-        System.out.println("----------------------------------------");
-        System.out.println("                 Products             ");
-        System.out.println("----------------------------------------");
         System.out.format("%-10s | %-20s | %-10s | %-15s | %-10s%n", "ProductCode", "Description", "UnitPrice",
                 "OnHandQuantity", "CategoryID");
-        System.out.println("----------------------------------------");
 
         try (Connection conn = DatabaseConnection.connection();
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
                 ResultSet result = pstmt.executeQuery()) {
             while (result.next()) {
-                System.out.format("%-10s | %-20s | %-10.2f | %-15d | %-10d%n", result.getString(1), result.getString(2),
+                System.out.format("%-10s | %-20s | %-10.2f | %-10d | %-10d%n", result.getString(1), result.getString(2),
                         result.getDouble(3), result.getInt(4), result.getInt(5));
 
             }
-            System.out.println("----------------------------------------");
 
         } catch (SQLException e) {
             // TODO: handle exception
@@ -155,21 +146,16 @@ public class ProductDAO implements IProductDAO {
         // TODO Auto-generated method stub
         String sqlQuery = "SELECT * FROM products ORDER BY UnitPrice ASC";
 
-        System.out.println("----------------------------------------");
-        System.out.println("                 Products             ");
-        System.out.println("----------------------------------------");
         System.out.format("%-10s | %-20s | %-10s | %-15s | %-10s%n", "ProductCode", "Description", "UnitPrice",
                 "OnHandQuantity", "CategoryID");
-        System.out.println("----------------------------------------");
 
         try (Connection conn = DatabaseConnection.connection();
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
                 ResultSet result = pstmt.executeQuery()) {
             while (result.next()) {
-                System.out.format("%-10s | %-20s | %-10.2f | %-15d | %-10d%n", result.getString(1), result.getString(2),
+                System.out.format("%-10s | %-20s | %-10.2f | %-10d | %-10d%n", result.getString(1), result.getString(2),
                         result.getDouble(3), result.getInt(4), result.getInt(5));
             }
-            System.out.println("----------------------------------------");
 
         } catch (SQLException e) {
             // TODO: handle exception
