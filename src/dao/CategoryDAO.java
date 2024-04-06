@@ -57,7 +57,7 @@ public class CategoryDAO implements ICategoryDAO {
             }
 
             conn.commit();
-            System.out.println("Insert to category successfully!");
+            System.out.println("Insert in to category successfully!");
 
         } catch (SQLException e) {
             e.printStackTrace();
